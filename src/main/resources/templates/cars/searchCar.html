@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>The Good Car</title>
+    <link rel="shortcut icon" type="image/png" th:href="@{/images/logo.png}"/>
+
+    <link th:href="@{/css/bootstrap.css}" rel="stylesheet" href="../static/css/bootstrap.css"/>
+    <script th:src="@{/js/jquery.js}" src="../static/js/jquery.js"></script>
+    <script th:src="@{/js/popper.js}" src="../static/js/popper.js"></script>
+    <script th:src="@{/js/bootstrap.js}" src="../static/js/bootstrap.js"></script>
+
+    <link th:href="@{/css/styles.css}" rel="stylesheet" href="../static/css/styles.css"/>
+</head>
+<body>
+<div th:insert="layouts/menu.html :: menu">
+
+</div>
+
+
+<div>
+    <img th:src="@{/images/wallpapercar2.png}" class="img-fluid" alt="Responsive image">
+</div>
+
+<div class="container">
+    <div class="row row-cols-1 row-cols-md-3 mt-5">
+        <div th:insert="components/cardBuySeeCar.html :: cardBuySeeCar" class="col mb-4" th:each="car : ${listCars}">
+
+        </div>
+    </div>
+</div>
+
+<nav aria-label="...">
+    <ul class="pagination justify-content-center">
+        <li class="page-item disabled" th:if="${page == 1}">
+            <a class="page-link" th:href="'/cars/search/page/' + ${page - 1}"tabindex="-1">Previous</a>
+        </li>
+        <li class="page-item" th:unless="${page == 1}">
+            <a class="page-link" th:href="'/cars/search/page/' + ${page - 1}"tabindex="-1">Previous</a>
+        </li>
+
+        <li class="page-item" th:each="i: ${#numbers.sequence(1, page)}" th:unless="${page == i}"><a class="page-link" th:href="'/cars/search/page/' + ${i}" th:text="${i}"></a></li>
+        <li class="page-item active " th:each="i: ${#numbers.sequence(1, numberPages)}" th:if="${page == i}"><a class="page-link" th:href="'/cars/search/page/' + ${i}" th:text="${i}"></a></li>
+        <li class="page-item" th:each="i: ${#numbers.sequence(page, numberPages)}" th:unless="${page == i}"><a class="page-link" th:href="'/cars/search/page/' + ${i}" th:text="${i}"></a></li>
+
+        <li class="page-item disabled" th:if="${page == numberPages}">
+            <a class="page-link" th:href="'/cars/search/page/' + ${page + 1}">Next</a>
+        </li>
+        <li class="page-item" th:unless="${page == numberPages}">
+            <a class="page-link" th:href="'/cars/search/page/' + ${page + 1}">Next</a>
+        </li>
+    </ul>
+</nav>
+
+<!--FOOTER-->
+
+<footer th:insert="layouts/footer.html :: footer">
+
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+
+</body>
+</html>
