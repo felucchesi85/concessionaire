@@ -1,0 +1,29 @@
+<div th:fragment="detailsCar">
+    <p>
+        <button class="btn btn-primary btn-block btn-lg" type="button" data-toggle="collapse" data-target="#details" aria-expanded="false" aria-controls="details">Car details</button>
+    </p>
+    <div class="row">
+        <div class="col">
+            <div class="collapse multi-collapse" id="details">
+                <div class="card card-body">
+                    <p class="lead font-weight-bold">Serial Number: <span class="font-weight-normal" th:text="${car.serialNumber}"></span></p>
+                    <p class="lead font-weight-bold">Car details: <span class="font-weight-normal" th:text="${car.carDetails}"></span></p>
+                    <p class="lead font-weight-bold">Interior features:</p>
+                    <ul>
+                        <li class="font-weight-normal" th:each="feature : ${car.interiorFeatures}" th:text="${feature}"></li>
+                    </ul>
+                    <p class="lead font-weight-bold">Exterior features:</p>
+                    <ul>
+                        <li class="font-weight-normal" th:each="feature : ${car.exteriorFeatures}" th:text="${feature}"></li>
+                    </ul>
+                    <p class="lead font-weight-bold">Safety features:</p>
+                    <ul>
+                        <li class="font-weight-normal" th:each="feature : ${car.safetyFeatures}" th:text="${feature}"></li>
+                    </ul>
+                    <p class="lead font-weight-bold">Others features: <span class="font-weight-normal" th:text="${car.othersFeatures}"></span></p>
+                    <p class="lead font-weight-bold">Description: <span class="font-weight-normal" th:text="${car.description}"></span></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

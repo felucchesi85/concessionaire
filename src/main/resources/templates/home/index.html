@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>The Good Car</title>
+    <link rel="shortcut icon" type="image/png" th:href="@{./images/logo.png}"/>
+
+    <link th:href="@{/css/bootstrap.css}" rel="stylesheet" href="../static/css/bootstrap.css"/>
+    <script th:src="@{/js/jquery.js}" src="../static/js/jquery.js"></script>
+    <script th:src="@{/js/bootstrap.js}" src="../static/js/bootstrap.js"></script>
+
+    <link th:href="@{/css/styles.css}" rel="stylesheet" href="../static/css/styles.css"/>
+</head>
+<body>
+<div th:insert="layouts/menu.html :: menu">
+
+</div>
+
+<div class="wallpaper pt-5">
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-4 bg-secondary border border-dark">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col">
+                            <p class="h3 font-weight-bold text-light text-center my-3">SEARCH A CAR</p>
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <a href="/cars/search" class="btn btn-light btn-lg btn-block" role="button">Search</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-8">
+                <p class="font-weight-bold mt-2">BUY NEW OR USED CAR ONLINE</p>
+                <p class="display-3 font-weight-bold">THE ART OF DRIVING</p>
+                <p class="h5 font-weight-bold">Get the Latest Car Reviews & Best Deals.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container my-5">
+    <div class="row">
+        <div class="col">
+            <img th:src="@{/images/highquality.png}" class="img-fluid d-block mx-auto" alt="Responsive image">
+            <p class="h5 text-center">HIGH-QUALITY CARS</p>
+            <p>We provide a multiple inspection and guarantee a high-quality cars and complimentary limited warranty.</p>
+        </div>
+        <div class="vl"></div>
+        <div class="col">
+            <img th:src="@{/images/daysreturn.png}" class="img-fluid d-block mx-auto" alt="Responsive image">
+            <p class="h5 text-center">14 DAYS RETURN</p>
+            <p>We provide a 14-day test drive, to see if your car truly fits into your life. If it doesn’t, simply return it.</p>
+        </div>
+        <div class="vl"></div>
+        <div class="col">
+            <img th:src="@{/images/savings.png}" class="img-fluid d-block mx-auto" alt="Responsive image">
+            <p class="h5 text-center">SAVINGS</p>
+            <p>You could save more when you buy your car online at TRADER, because we don’t have bogus fees and big overthead.</p>
+        </div>
+        <div class="vl"></div>
+        <div class="col">
+            <img th:src="@{/images/onlineFinancing.png}" class="img-fluid d-block mx-auto" alt="Responsive image">
+            <p class="h5 text-center">EASY ONLINE FINANCING</p>
+            <p>Our financing partners will compete to get you a highly competitive rate and quickly assist you with your online order</p>
+        </div>
+        <div class="vl"></div>
+        <div class="col">
+            <img th:src="@{/images/delivered.png}" class="img-fluid d-block mx-auto" alt="Responsive image">
+            <p class="h5 text-center">DELIVERED RIGHT TO YOU</p>
+            <p>Get your car or truck shipped to your home or a convenient nearby location. Get your car how you want it and when you want it.</p>
+        </div>
+    </div>
+    <div class="row mt-5">
+        <div class="col-12">
+            <img th:src="@{/images/anuncio.png}" class="img-fluid d-block mx-auto" alt="Responsive image">
+        </div>
+    </div>
+</div>
+
+<!--Aqui quiero 4 ofertas especiales al azar-->
+
+<div class="container mb-5">
+    <div class="row">
+        <div class="col-8">
+            <hr>
+        </div>
+        <div class="col-4">
+            <a href="#" class="btn btn-primary btn-lg btn-block" role="button">VIEWS ALL USED CARS</a>
+        </div>
+    </div>
+</div>
+
+<!--FOOTER-->
+
+<footer th:insert="layouts/footer.html :: footer">
+
+</footer>
+
+</body>
+</html>

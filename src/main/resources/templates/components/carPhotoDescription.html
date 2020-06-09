@@ -1,0 +1,43 @@
+<div th:fragment="carPhotoDescription">
+    <div class="container mt-5 pt-5">
+        <div class="row">
+            <div class="col">
+                <img th:src="@{/images/{img} (img=${car.image}) }" class="img-fluid" alt="...">
+            </div>
+            <div class="col">
+                <div class="container">
+                    <div class="row">
+                        <div class="col">
+                            <p class="h3" th:text="${car.yearManufacturer} + ' ' + ${car.brand} + ' ' + ${car.model}"></p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <p class="h4 text-danger" th:text="${car.price}"></p>
+                        </div>
+                    </div>
+                    <div class="row mt-4">
+                        <div class="col">
+                            <p class="lead font-weight-bold">Body type: <span class="font-weight-normal" th:text="${car.bodyType}"></span></p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <p class="lead font-weight-bold">Color: <span class="font-weight-normal" th:text="${car.color}"></span></p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <p class="lead font-weight-bold">Transmission: <span class="font-weight-normal" th:text="${car.transmision}"></span></p>
+                        </div>
+                    </div>
+                    <div class="row mt-5">
+                        <div class="col">
+                            <a href="#" class="btn btn-danger btn-block btn-lg" role="button" aria-pressed="true">BUY!!!</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
