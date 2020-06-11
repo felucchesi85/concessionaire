@@ -12,7 +12,7 @@
                         <a th:href="'/cars/search/see-details/' + ${car.serialNumber}" class="btn btn-primary btn-lg btn-block">See details</a>
                     </div>
                     <div class="col-6">
-                        <a href="#" class="btn btn-danger btn-lg btn-block">Buy</a>
+                        <a th:href="'/cars/buyCar/' + ${car.serialNumber}" class="btn btn-danger btn-lg btn-block">Buy</a>
                     </div>
                 </div>
             </div>

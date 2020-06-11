@@ -41,6 +41,11 @@ public class CarController {
         return FilesHTML.SEE_DETAILS;
     }
 
+    @GetMapping("/buyCar/{serialNumber}")
+    public String buyCar(@PathVariable("serialNumber") String serialNumber, Model model) {
+        return FilesHTML.BUY_CAR;
+    }
+
     @GetMapping("/sellCar")
     public String sellCar(Model model) {
         return FilesHTML.SELL_CAR;
