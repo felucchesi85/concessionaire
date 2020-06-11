@@ -42,12 +42,24 @@ public class CarController {
     }
 
     @GetMapping("/buyCar/{serialNumber}")
-    public String buyCar(@PathVariable("serialNumber") String serialNumber, Model model) {
+    public String buyFormCar(@PathVariable("serialNumber") String serialNumber, Model model) {
+        Car car = findCarBySerialNumber(serialNumber);
+        model.addAttribute("car", car);
         return FilesHTML.BUY_CAR;
+    }
+
+    @PostMapping("/buyCar/{serialNumber}/buy")
+    public String buyCar(Model model) {
+
+        // Quiero que me retorne, o bien al formulario si
+        // algo no está bien, o bien un mensaje de éxito (y luego me envie al menú principal).
+        return FilesHTML.INDEX;
     }
 
     @GetMapping("/sellCar")
     public String sellCar(Model model) {
         return FilesHTML.SELL_CAR;
     }
+
+    // Método POST de vender coche de que se ha vendido, o bien recargar el formulario
 }
