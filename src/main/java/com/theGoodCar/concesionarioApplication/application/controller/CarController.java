@@ -2,9 +2,11 @@ package com.theGoodCar.concesionarioApplication.application.controller;
 
 import com.theGoodCar.concesionarioApplication.application.configuration.FilesHTML;
 import com.theGoodCar.concesionarioApplication.domain.Car;
+import com.theGoodCar.concesionarioApplication.infrastructure.utils.ValidateBuyCar;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.LinkedList;
 
@@ -48,12 +50,20 @@ public class CarController {
         return FilesHTML.BUY_CAR;
     }
 
+    // Quiero que me retorne, o bien al formulario si
+    // algo no está bien, o bien un mensaje de éxito (y luego me envie al menú principal).
     @PostMapping("/buyCar/{serialNumber}/buy")
-    public String buyCar(Model model) {
-
-        // Quiero que me retorne, o bien al formulario si
-        // algo no está bien, o bien un mensaje de éxito (y luego me envie al menú principal).
-        return FilesHTML.INDEX;
+    public ModelAndView buyCar(@RequestParam("name") String name, @RequestParam("lastName") String lastName, @RequestParam("dni") String dni, @RequestParam("agreeTerms") String agreeTerms, Model model) {
+        if (ValidateBuyCar.validationBuy(name, lastName, dni, agreeTerms)) {
+            ModelAndView modelAndView = new ModelAndView(FilesHTML.TICKET_BUY_CAR);
+            modelAndView.addObject("name", name);
+            modelAndView.addObject("lastName", name);
+            modelAndView.addObject("dni", name);
+            return modelAndView;
+        } else {
+            ModelAndView modelAndView = new ModelAndView(FilesHTML.INDEX);
+            return modelAndView;
+        }
     }
 
     @GetMapping("/sellCar")

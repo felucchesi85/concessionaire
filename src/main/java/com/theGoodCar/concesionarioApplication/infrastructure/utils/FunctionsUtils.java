@@ -372,7 +372,6 @@ public class FunctionsUtils {
 
     public static LinkedList<Car> paginationCars(int numPagination, int numCards) {
         LinkedList<Car> listCars = createDefaultCars();
-
         LinkedList<Car> carsPagination = new LinkedList<>();
 
         for (int i = (numPagination-1)*numCards+1; i <= numPagination*numCards; i++) {
