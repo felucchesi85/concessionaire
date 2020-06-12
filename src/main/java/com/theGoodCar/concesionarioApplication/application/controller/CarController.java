@@ -3,12 +3,15 @@ package com.theGoodCar.concesionarioApplication.application.controller;
 import com.theGoodCar.concesionarioApplication.application.configuration.FilesHTML;
 import com.theGoodCar.concesionarioApplication.domain.Car;
 import com.theGoodCar.concesionarioApplication.infrastructure.utils.ValidateBuyCar;
+import com.theGoodCar.concesionarioApplication.infrastructure.utils.ValidateSellCar;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.Map;
 
 import static com.theGoodCar.concesionarioApplication.infrastructure.utils.FunctionsUtils.*;
 
@@ -70,8 +73,22 @@ public class CarController {
     }
 
     @GetMapping("/sellCar")
-    public String sellCar(Model model) {
+    public String sellCarForm(Model model) {
         return FilesHTML.SELL_CAR;
+    }
+
+    @PostMapping("/sellCar/sell")
+    public String sellCar(@RequestParam Map<String, String> allParams, Model model) {
+
+        if (ValidateSellCar.validationSell(allParams)) {
+            System.out.println("TODO FUE BIEN");
+        } else {
+            System.out.println("ALGO FUE MAL");
+        }
+        for (Map.Entry<String, String> value : allParams.entrySet()) {
+            System.out.println("Clave: " + value.getKey() + ". Valor: " + value.getValue());
+        }
+        return FilesHTML.INDEX;
     }
 
     // Método POST de vender coche de que se ha vendido, o bien recargar el formulario
