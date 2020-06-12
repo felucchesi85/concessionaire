@@ -1,0 +1,40 @@
+<div th:fragment="formBuyCar" class="card h-100">
+    <div class="container my-5">
+        <div th:if="${error}" class="row">
+            <div class="col alert alert-danger" role="alert">
+                <p>You have an error in the form</p>
+            </div>
+        </div>
+        <form th:action="@{/cars/buyCar/{serialNumber}/buy (serialNumber=${car.serialNumber})}" method="post">
+            <div class="form-row">
+                <input type="hidden" class="form-control" id="serialNumber" placeholder="First name" name="serialNumber"
+                       th:attr="value=${car.serialNumber}" required>
+                <div class="col-md-4 mb-3">
+                    <label for="firstName">First name</label>
+                    <input type="text" class="form-control" id="firstName" placeholder="First name" name="name" value=""
+                           required>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <label for="lastName">Last name</label>
+                    <input type="text" class="form-control" id="lastName" placeholder="Last name" name="lastName" value=""
+                           required>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <label for="nationalDocument">DNI</label>
+                    <input type="text" class="form-control" id="nationalDocument" placeholder="nationalDocument" name="dni"
+                           value="" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="agree" id="agreeTerms" name="agreeTerms"
+                           required>
+                    <label class="form-check-label" for="agreeTerms">
+                        Agree to terms and conditions
+                    </label>
+                </div>
+            </div>
+            <button class="btn btn-primary" type="submit">Submit form</button>
+        </form>
+    </div>
+</div>

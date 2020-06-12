@@ -20,31 +20,9 @@
     <img th:src="@{/images/buyCarImage.png}" class="img-fluid" alt="Responsive image">
 </div>
 
-<form th:action="@{/cars/buyCar/{serialNumber}/buy (serialNumber=${car.serialNumber})}" method="post">
-    <div class="form-row">
-        <div class="col-md-4 mb-3">
-            <label for="firstName">First name</label>
-            <input type="text" class="form-control" id="firstName" placeholder="First name" name="name" value="" required>
-        </div>
-        <div class="col-md-4 mb-3">
-            <label for="lastName">Last name</label>
-            <input type="text" class="form-control" id="lastName" placeholder="Last name" name="lastName" value="" required>
-        </div>
-        <div class="col-md-4 mb-3">
-            <label for="nationalDocument">DNI</label>
-            <input type="text" class="form-control" id="nationalDocument" placeholder="nationalDocument" name="dni" value="" required>
-        </div>
-    </div>
-    <div class="form-group">
-        <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="agree" id="agreeTerms" name="agreeTerms" required>
-            <label class="form-check-label" for="agreeTerms">
-                Agree to terms and conditions
-            </label>
-        </div>
-    </div>
-    <button class="btn btn-primary" type="submit">Submit form</button>
-</form>
+<div th:insert="components/formBuyCar.html :: formBuyCar">
+
+</div>
 
 <!--FOOTER-->
 

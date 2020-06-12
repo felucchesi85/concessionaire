@@ -1,0 +1,13 @@
+<div th:fragment="purchaseReceipt" class="container grayClear my-5">
+    <div class="row">
+        <div class="col">
+            <p class="h2 text-center">Purchase receipt</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12 font-weight-bold">Name: <span th:text="${name}"></span></div>
+        <div class="col-12 font-weight-bold">Last Name: <span th:text="${lastName}"></span></div>
+        <div class="col-12 font-weight-bold">DNI: <span th:text="${dni}"></span></div>
+        <div class="col-12 font-weight-bold">Serial number car: <span th:text="${car.serialNumber}"></span></div>
+    </div>
+</div>

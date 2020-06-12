@@ -20,18 +20,15 @@
     <img th:src="@{/images/buyCarImage.png}" class="img-fluid" alt="Responsive image">
 </div>
 
+<div th:insert="components/purchaseReceipt.html :: purchaseReceipt">
 
-<div class="container">
+</div>
+
+<div class="container mb-5">
     <div class="row">
         <div class="col">
-            <p class="h2 text-center">Purchase receipt</p>
+            <a th:href="@{/home}" class="btn btn-primary btn-lg" tabindex="-1" role="button" aria-disabled="true">Return</a>
         </div>
-    </div>
-    <div class="row">
-        <div class="col font-weight-bold">Name: <span th:text="${name}"></span></div>
-        <div class="col font-weight-bold">Last Name: <span th:text="${lastName}"></span></div>
-        <div class="col font-weight-bold">DNI: <span th:text="${dni}"></span></div>
-        <!--<div class="col font-weight-bold">Serial number car: <span th:text="${serialNumber}"></span></div>-->
     </div>
 </div>
 

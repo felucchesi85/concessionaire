@@ -47,21 +47,24 @@ public class CarController {
     public String buyFormCar(@PathVariable("serialNumber") String serialNumber, Model model) {
         Car car = findCarBySerialNumber(serialNumber);
         model.addAttribute("car", car);
+        model.addAttribute("error", false);
         return FilesHTML.BUY_CAR;
     }
 
-    // Quiero que me retorne, o bien al formulario si
-    // algo no está bien, o bien un mensaje de éxito (y luego me envie al menú principal).
     @PostMapping("/buyCar/{serialNumber}/buy")
-    public ModelAndView buyCar(@RequestParam("name") String name, @RequestParam("lastName") String lastName, @RequestParam("dni") String dni, @RequestParam("agreeTerms") String agreeTerms, Model model) {
+    public ModelAndView buyCar(@RequestParam("name") String name, @RequestParam("lastName") String lastName, @RequestParam("dni") String dni, @RequestParam("agreeTerms") String agreeTerms, @RequestParam("serialNumber") String serialNumber, Model model) {
+        Car car = findCarBySerialNumber(serialNumber);
         if (ValidateBuyCar.validationBuy(name, lastName, dni, agreeTerms)) {
             ModelAndView modelAndView = new ModelAndView(FilesHTML.TICKET_BUY_CAR);
             modelAndView.addObject("name", name);
             modelAndView.addObject("lastName", name);
             modelAndView.addObject("dni", name);
+            modelAndView.addObject("car", car);
             return modelAndView;
         } else {
-            ModelAndView modelAndView = new ModelAndView(FilesHTML.INDEX);
+            ModelAndView modelAndView = new ModelAndView(FilesHTML.BUY_CAR);
+            modelAndView.addObject("car", car);
+            modelAndView.addObject("error", true);
             return modelAndView;
         }
     }
