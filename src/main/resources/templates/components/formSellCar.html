@@ -1,0 +1,68 @@
+<div th:fragment="formSellCar">
+    <div class="container my-5">
+        <div th:if="${error}" class="row">
+            <div class="col alert alert-danger" role="alert">
+                <p>You have an error in the form</p>
+            </div>
+        </div>
+        <form th:action="@{/cars/sellCar/sell}" method="post">
+            <div class="form-row">
+                <div class="col-md-4 mb-3">
+                    <label for="brand">Brand</label>
+                    <input type="text" class="form-control" id="brand" name="brand" placeholder="Brand" required>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <label for="model">Model</label>
+                    <input type="text" class="form-control" id="model" name="model" placeholder="model" required>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <label for="bodyType">Body type</label>
+                    <input type="text" class="form-control" id="bodyType" name="bodyType" placeholder="Body type" required>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="col-md-4 mb-3">
+                    <label for="yearManufacturer">Year manufacturer</label>
+                    <input type="text" class="form-control" id="yearManufacturer" name="yearManufacturer" placeholder="Year manufacturer" required>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <label for="color">Color</label>
+                    <input type="text" class="form-control" id="color" name="color" placeholder="Color" required>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <label for="transmission">Transmission</label>
+                    <input type="text" class="form-control" id="transmission" name="transmission" placeholder="Transmission" required>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="col-md-12 mb-3">
+                    <label for="carDetails">Car details</label>
+                    <input type="text" class="form-control" id="carDetails" name="carDetails" placeholder="Details list" required>
+                </div>
+                <div class="col-md-12 mb-3">
+                    <label for="otherFeatures">Other features</label>
+                    <input type="text" class="form-control" id="OtherFeatures" name="OtherFeatures" placeholder="Other features list" required>
+                </div>
+                <div class="col-md-12 mb-3">
+                    <label for="description">Description</label>
+                    <input type="text" class="form-control" id="description" name="description" placeholder="Description" required>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="col-md-12 mb-3">
+                    <label for="price">Price</label>
+                    <input type="text" class="form-control" id="price" name="price" placeholder="Price" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="invalidCheck2" required>
+                    <label class="form-check-label" for="invalidCheck2">
+                        Agree to terms and conditions
+                    </label>
+                </div>
+            </div>
+            <button class="btn btn-primary" type="submit">Submit form</button>
+        </form>
+    </div>
+</div>

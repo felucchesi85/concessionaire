@@ -1,9 +1,10 @@
 package com.theGoodCar.concesionarioApplication.infrastructure.utils;
 
+import java.util.Calendar;
 import java.util.Map;
 
 public class ValidateSellCar {
-    private final static String ONLY_CHARACTERS_NUMBERS = "[A-Za-z0-9 ]*";
+    private final static String ONLY_CHARACTERS_NUMBERS = "[A-Za-z0-9, ]*";
     private final static String ONLY_FORMAT_YEAR = "[0-9]{4}";
     private final static String ONLY_FORMAT_PRICE = "[0-9]*[,0-9]*?";
 
@@ -19,8 +20,7 @@ public class ValidateSellCar {
     public static boolean areNotWellFormed (String key, String value) {
         switch (key){
             case "yearManufacturer":
-                // AND de si es mayor a 1990 y menor o igual al año actúal
-                return validation(value, ONLY_FORMAT_YEAR);
+                return validation(value, ONLY_FORMAT_YEAR) || yearIsMinorThanToday(value);
             case "price":
                 return validation(value, ONLY_FORMAT_PRICE);
             default:
@@ -37,5 +37,14 @@ public class ValidateSellCar {
             return true;
         }
         return false;
+    }
+
+    public static boolean yearIsMinorThanToday(String value) {
+        int year = Integer.parseInt(value);
+        int yearToday = Calendar.getInstance().get(Calendar.YEAR);
+        if (yearToday >= year && year >= yearToday - 20) {
+            return false;
+        }
+        return true;
     }
 }

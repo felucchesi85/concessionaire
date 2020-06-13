@@ -3,29 +3,16 @@ package com.theGoodCar.concesionarioApplication.infrastructure.utils;
 import com.theGoodCar.concesionarioApplication.domain.Car;
 
 import java.util.LinkedList;
+import java.util.Map;
 
 public class FunctionsUtils {
 
     public static LinkedList<Car> createDefaultCars() {
         LinkedList<Car> listCars = new LinkedList<Car>();
 
-        LinkedList<String> interiorFeatures = new LinkedList<String>();
-        LinkedList<String> exteriorFeatures = new LinkedList<String>();
-        LinkedList<String> safetyFeatures = new LinkedList<String>();
-
-        interiorFeatures.add("Bluetooth");
-        interiorFeatures.add("iPod / Aux Input");
-        interiorFeatures.add("Leather Seats");
-        interiorFeatures.add("Navigation System");
-        interiorFeatures.add("Premium Audio System");
-
-        exteriorFeatures.add("Premium Wheels");
-        exteriorFeatures.add("Spoiler");
-
-        safetyFeatures.add("Lane Departure Warning System");
-        safetyFeatures.add("Blind Spot Detection");
-        safetyFeatures.add("Blind Spot Detection");
-        safetyFeatures.add("Parking Sensors");
+        LinkedList<String> interiorFeatures = interiorFeatures();
+        LinkedList<String> exteriorFeatures = exteriorFeatures();
+        LinkedList<String> safetyFeatures = safetyFeatures();
 
         listCars.add(Car.builder()
                 .serialNumber(1)
@@ -46,26 +33,6 @@ public class FunctionsUtils {
                 .build()
                 );
 
-        //
-
-        interiorFeatures = new LinkedList<String>();
-        exteriorFeatures = new LinkedList<String>();
-        safetyFeatures = new LinkedList<String>();
-
-        interiorFeatures.add("Bluetooth");
-        interiorFeatures.add("iPod / Aux Input");
-        interiorFeatures.add("Leather Seats");
-        interiorFeatures.add("Navigation System");
-        interiorFeatures.add("Premium Audio System");
-
-        exteriorFeatures.add("Premium Wheels");
-        exteriorFeatures.add("Spoiler");
-
-        safetyFeatures.add("Lane Departure Warning System");
-        safetyFeatures.add("Blind Spot Detection");
-        safetyFeatures.add("Blind Spot Detection");
-        safetyFeatures.add("Parking Sensors");
-
         listCars.add(Car.builder()
                 .serialNumber(2)
                 .brand("BMW")
@@ -84,26 +51,6 @@ public class FunctionsUtils {
                 .image("bmwM3.jpg")
                 .build()
         );
-
-        //
-
-        interiorFeatures = new LinkedList<String>();
-        exteriorFeatures = new LinkedList<String>();
-        safetyFeatures = new LinkedList<String>();
-
-        interiorFeatures.add("Bluetooth");
-        interiorFeatures.add("iPod / Aux Input");
-        interiorFeatures.add("Leather Seats");
-        interiorFeatures.add("Navigation System");
-        interiorFeatures.add("Premium Audio System");
-
-        exteriorFeatures.add("Premium Wheels");
-        exteriorFeatures.add("Spoiler");
-
-        safetyFeatures.add("Lane Departure Warning System");
-        safetyFeatures.add("Blind Spot Detection");
-        safetyFeatures.add("Blind Spot Detection");
-        safetyFeatures.add("Parking Sensors");
 
         listCars.add(Car.builder()
                 .serialNumber(3)
@@ -124,24 +71,6 @@ public class FunctionsUtils {
                 .build()
         );
 
-        interiorFeatures = new LinkedList<String>();
-        exteriorFeatures = new LinkedList<String>();
-        safetyFeatures = new LinkedList<String>();
-
-        interiorFeatures.add("Bluetooth");
-        interiorFeatures.add("iPod / Aux Input");
-        interiorFeatures.add("Leather Seats");
-        interiorFeatures.add("Navigation System");
-        interiorFeatures.add("Premium Audio System");
-
-        exteriorFeatures.add("Premium Wheels");
-        exteriorFeatures.add("Spoiler");
-
-        safetyFeatures.add("Lane Departure Warning System");
-        safetyFeatures.add("Blind Spot Detection");
-        safetyFeatures.add("Blind Spot Detection");
-        safetyFeatures.add("Parking Sensors");
-
         listCars.add(Car.builder()
                 .serialNumber(4)
                 .brand("Hyundai")
@@ -160,26 +89,6 @@ public class FunctionsUtils {
                 .image("hyundaiSonata.jpg")
                 .build()
         );
-
-        //
-
-        interiorFeatures = new LinkedList<String>();
-        exteriorFeatures = new LinkedList<String>();
-        safetyFeatures = new LinkedList<String>();
-
-        interiorFeatures.add("Bluetooth");
-        interiorFeatures.add("iPod / Aux Input");
-        interiorFeatures.add("Leather Seats");
-        interiorFeatures.add("Navigation System");
-        interiorFeatures.add("Premium Audio System");
-
-        exteriorFeatures.add("Premium Wheels");
-        exteriorFeatures.add("Spoiler");
-
-        safetyFeatures.add("Lane Departure Warning System");
-        safetyFeatures.add("Blind Spot Detection");
-        safetyFeatures.add("Blind Spot Detection");
-        safetyFeatures.add("Parking Sensors");
 
         listCars.add(Car.builder()
                 .serialNumber(5)
@@ -200,26 +109,6 @@ public class FunctionsUtils {
                 .build()
         );
 
-        //
-
-        interiorFeatures = new LinkedList<String>();
-        exteriorFeatures = new LinkedList<String>();
-        safetyFeatures = new LinkedList<String>();
-
-        interiorFeatures.add("Bluetooth");
-        interiorFeatures.add("iPod / Aux Input");
-        interiorFeatures.add("Leather Seats");
-        interiorFeatures.add("Navigation System");
-        interiorFeatures.add("Premium Audio System");
-
-        exteriorFeatures.add("Premium Wheels");
-        exteriorFeatures.add("Spoiler");
-
-        safetyFeatures.add("Lane Departure Warning System");
-        safetyFeatures.add("Blind Spot Detection");
-        safetyFeatures.add("Blind Spot Detection");
-        safetyFeatures.add("Parking Sensors");
-
         listCars.add(Car.builder()
                 .serialNumber(6)
                 .brand("Nissan")
@@ -238,26 +127,6 @@ public class FunctionsUtils {
                 .image("nissanFrontier.jpg")
                 .build()
         );
-
-        //
-
-        interiorFeatures = new LinkedList<String>();
-        exteriorFeatures = new LinkedList<String>();
-        safetyFeatures = new LinkedList<String>();
-
-        interiorFeatures.add("Bluetooth");
-        interiorFeatures.add("iPod / Aux Input");
-        interiorFeatures.add("Leather Seats");
-        interiorFeatures.add("Navigation System");
-        interiorFeatures.add("Premium Audio System");
-
-        exteriorFeatures.add("Premium Wheels");
-        exteriorFeatures.add("Spoiler");
-
-        safetyFeatures.add("Lane Departure Warning System");
-        safetyFeatures.add("Blind Spot Detection");
-        safetyFeatures.add("Blind Spot Detection");
-        safetyFeatures.add("Parking Sensors");
 
         listCars.add(Car.builder()
                 .serialNumber(7)
@@ -278,26 +147,6 @@ public class FunctionsUtils {
                 .build()
         );
 
-        //
-
-        interiorFeatures = new LinkedList<String>();
-        exteriorFeatures = new LinkedList<String>();
-        safetyFeatures = new LinkedList<String>();
-
-        interiorFeatures.add("Bluetooth");
-        interiorFeatures.add("iPod / Aux Input");
-        interiorFeatures.add("Leather Seats");
-        interiorFeatures.add("Navigation System");
-        interiorFeatures.add("Premium Audio System");
-
-        exteriorFeatures.add("Premium Wheels");
-        exteriorFeatures.add("Spoiler");
-
-        safetyFeatures.add("Lane Departure Warning System");
-        safetyFeatures.add("Blind Spot Detection");
-        safetyFeatures.add("Blind Spot Detection");
-        safetyFeatures.add("Parking Sensors");
-
         listCars.add(Car.builder()
                 .serialNumber(8)
                 .brand("Mitsubishi")
@@ -316,26 +165,6 @@ public class FunctionsUtils {
                 .image("mitsubishiOutlander.jpg")
                 .build()
         );
-
-        //
-
-        interiorFeatures = new LinkedList<String>();
-        exteriorFeatures = new LinkedList<String>();
-        safetyFeatures = new LinkedList<String>();
-
-        interiorFeatures.add("Bluetooth");
-        interiorFeatures.add("iPod / Aux Input");
-        interiorFeatures.add("Leather Seats");
-        interiorFeatures.add("Navigation System");
-        interiorFeatures.add("Premium Audio System");
-
-        exteriorFeatures.add("Premium Wheels");
-        exteriorFeatures.add("Spoiler");
-
-        safetyFeatures.add("Lane Departure Warning System");
-        safetyFeatures.add("Blind Spot Detection");
-        safetyFeatures.add("Blind Spot Detection");
-        safetyFeatures.add("Parking Sensors");
 
         listCars.add(Car.builder()
                 .serialNumber(9)
@@ -391,5 +220,64 @@ public class FunctionsUtils {
         } else {
             return numberCars/numPagination + 1;
         }
+    }
+
+    public static LinkedList<String> interiorFeatures() {
+        LinkedList<String> interiorFeatures = new LinkedList<String>();
+
+        interiorFeatures.add("Bluetooth");
+        interiorFeatures.add("iPod / Aux Input");
+        interiorFeatures.add("Leather Seats");
+        interiorFeatures.add("Navigation System");
+        interiorFeatures.add("Premium Audio System");
+
+        return interiorFeatures;
+    }
+
+    public static LinkedList<String> exteriorFeatures() {
+        LinkedList<String> exteriorFeatures = new LinkedList<String>();
+
+        exteriorFeatures.add("Premium Wheels");
+        exteriorFeatures.add("Spoiler");
+
+        return exteriorFeatures;
+    }
+
+    public static LinkedList<String> safetyFeatures() {
+        LinkedList<String> safetyFeatures = new LinkedList<String>();
+
+        safetyFeatures.add("Lane Departure Warning System");
+        safetyFeatures.add("Blind Spot Detection");
+        safetyFeatures.add("Blind Spot Detection");
+        safetyFeatures.add("Parking Sensors");
+
+        return safetyFeatures;
+    }
+
+    public static Car createCar(Map<String, String> allParams) {
+        int newSerialNumber = createDefaultCars().getLast().getSerialNumber() + 1;
+        LinkedList<String> interiorFeatures = interiorFeatures();
+        LinkedList<String> exteriorFeatures = exteriorFeatures();
+        LinkedList<String> safetyFeatures = safetyFeatures();
+
+        Car car = Car.builder()
+                .serialNumber(newSerialNumber)
+                .brand(allParams.get("brand"))
+                .bodyType(allParams.get("bodyType"))
+                .model(allParams.get("model"))
+                .yearManufacturer(Integer.parseInt(allParams.get("yearManufacturer")))
+                .carDetails(allParams.get("carDetails"))
+                .interiorFeatures(interiorFeatures)
+                .exteriorFeatures(exteriorFeatures)
+                .safetyFeatures(safetyFeatures)
+                .othersFeatures(allParams.get("otherFeatures"))
+                .color(allParams.get("color"))
+                .transmision(allParams.get("transmission"))
+                .description(allParams.get("description"))
+                .price(allParams.get("price"))
+                .image("audiA8.jpg")
+                .build();
+
+        return car;
     }
 }

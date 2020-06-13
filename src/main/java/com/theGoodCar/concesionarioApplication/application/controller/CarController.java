@@ -74,22 +74,26 @@ public class CarController {
 
     @GetMapping("/sellCar")
     public String sellCarForm(Model model) {
+        model.addAttribute("error", false);
         return FilesHTML.SELL_CAR;
     }
 
     @PostMapping("/sellCar/sell")
-    public String sellCar(@RequestParam Map<String, String> allParams, Model model) {
-
+    public ModelAndView sellCar(@RequestParam Map<String, String> allParams) {
         if (ValidateSellCar.validationSell(allParams)) {
-            System.out.println("TODO FUE BIEN");
+            ModelAndView modelAndView = new ModelAndView(FilesHTML.SEARCH_CARS);
+            LinkedList<Car> listCars = paginationCars(1, 6);
+            listCars.add(createCar(allParams));
+            int numberPages = calculateNumberPages(6);
+            modelAndView.addObject("listCars", listCars);
+            modelAndView.addObject("numberPages", numberPages);
+            modelAndView.addObject("page", 1);
+            return modelAndView;
         } else {
             System.out.println("ALGO FUE MAL");
+            ModelAndView modelAndView = new ModelAndView(FilesHTML.SELL_CAR);
+            modelAndView.addObject("error", true);
+            return modelAndView;
         }
-        for (Map.Entry<String, String> value : allParams.entrySet()) {
-            System.out.println("Clave: " + value.getKey() + ". Valor: " + value.getValue());
-        }
-        return FilesHTML.INDEX;
     }
-
-    // Método POST de vender coche de que se ha vendido, o bien recargar el formulario
 }
