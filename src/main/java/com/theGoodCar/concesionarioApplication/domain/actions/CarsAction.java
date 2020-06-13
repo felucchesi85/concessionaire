@@ -4,6 +4,8 @@ import com.theGoodCar.concesionarioApplication.application.configuration.FilesHT
 import com.theGoodCar.concesionarioApplication.domain.Car;
 import com.theGoodCar.concesionarioApplication.infrastructure.utils.ValidateBuyCar;
 import com.theGoodCar.concesionarioApplication.infrastructure.utils.ValidateSellCar;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.web.servlet.ModelAndView;
@@ -14,9 +16,12 @@ import java.util.Map;
 import static com.theGoodCar.concesionarioApplication.infrastructure.utils.FunctionsUtils.*;
 
 @Service
+@NoArgsConstructor
 public class CarsAction {
 
-    //private Car findCar
+    public String holaaa() {
+        return FilesHTML.INDEX;
+    }
 
     public String executeSearchCars(Model model) {
         LinkedList<Car> listCars = paginationCars(1, 6);

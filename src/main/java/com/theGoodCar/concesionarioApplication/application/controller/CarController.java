@@ -1,5 +1,7 @@
 package com.theGoodCar.concesionarioApplication.application.controller;
 
+import com.theGoodCar.concesionarioApplication.application.configuration.FilesHTML;
+import com.theGoodCar.concesionarioApplication.domain.Car;
 import com.theGoodCar.concesionarioApplication.domain.actions.CarsAction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -7,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.LinkedList;
 import java.util.Map;
 
 import static com.theGoodCar.concesionarioApplication.infrastructure.utils.FunctionsUtils.*;
@@ -18,9 +21,20 @@ public class CarController {
     @Autowired
     private CarsAction carsAction;
 
+    @GetMapping("/pruebas")
+    public String pruebas() {
+        return carsAction.holaaa();
+    }
+
     @GetMapping("/search")
     public String searchCars(Model model) {
-        return carsAction.executeSearchCars(model);
+        //carsAction.executeSearchCars(model);
+        LinkedList<Car> listCars = paginationCars(1, 6);
+        int numberPages = calculateNumberPages(6);
+        model.addAttribute("listCars", listCars);
+        model.addAttribute("numberPages", numberPages);
+        model.addAttribute("page", 1);
+        return FilesHTML.SEARCH_CARS;
     }
 
     @GetMapping("/search/page/{page}")
