@@ -3,6 +3,7 @@ package com.theGoodCar.concesionarioApplication.application.controller;
 import com.theGoodCar.concesionarioApplication.application.configuration.FilesHTML;
 import com.theGoodCar.concesionarioApplication.domain.Car;
 import com.theGoodCar.concesionarioApplication.domain.actions.CarsAction;
+import com.theGoodCar.concesionarioApplication.infrastructure.utils.FunctionsUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,6 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 import java.util.LinkedList;
 import java.util.Map;
 
+import static com.theGoodCar.concesionarioApplication.application.controller.modelFunctions.InsertDataModel.foo;
 import static com.theGoodCar.concesionarioApplication.infrastructure.utils.FunctionsUtils.*;
 
 @Controller
@@ -22,13 +24,26 @@ public class CarController {
     private CarsAction carsAction;
 
     @GetMapping("/pruebas")
-    public String pruebas() {
-        return carsAction.holaaa();
+    public String pruebas(Model model) {
+        LinkedList<Car> listCars = carsAction.servicioPrueba1();
+        int numberPages = carsAction.servicioPrueba2();
+        /*model.addAttribute("listCars", listCars);
+        model.addAttribute("numberPages", numberPages);
+        model.addAttribute("page", 1);*/
+        foo(model, listCars, numberPages);
+        //functionsUtils.insertInModel(model);
+        return FilesHTML.SEARCH_CARS;
     }
 
+    /*private void foo (Model model, LinkedList<Car> listCars, int numberPages) {
+        model.addAttribute("listCars", listCars);
+        model.addAttribute("numberPages", numberPages);
+        model.addAttribute("page", 2);
+    }*/
+
+    /*De cara a los tests, si usas MockMvc NO LE GUSTA NADA usar en la vista cosas que ocurran en un servicio... OLVIDATE, explota*/
     @GetMapping("/search")
     public String searchCars(Model model) {
-        //carsAction.executeSearchCars(model);
         LinkedList<Car> listCars = paginationCars(1, 6);
         int numberPages = calculateNumberPages(6);
         model.addAttribute("listCars", listCars);

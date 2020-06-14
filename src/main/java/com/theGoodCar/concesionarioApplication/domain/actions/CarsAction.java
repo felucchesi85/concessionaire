@@ -19,17 +19,23 @@ import static com.theGoodCar.concesionarioApplication.infrastructure.utils.Funct
 @NoArgsConstructor
 public class CarsAction {
 
-    public String holaaa() {
-        return FilesHTML.INDEX;
+    public LinkedList<Car> servicioPrueba1() {
+        LinkedList<Car> listCars = paginationCars(1, 6);
+        return listCars;
     }
 
-    public String executeSearchCars(Model model) {
+    public int servicioPrueba2() {
+        int numberPages = calculateNumberPages(6);
+        return numberPages;
+    }
+
+    public void executeSearchCars(Model model) {
         LinkedList<Car> listCars = paginationCars(1, 6);
         int numberPages = calculateNumberPages(6);
         model.addAttribute("listCars", listCars);
         model.addAttribute("numberPages", numberPages);
         model.addAttribute("page", 1);
-        return FilesHTML.SEARCH_CARS;
+        //return FilesHTML.SEARCH_CARS;
     }
 
 
