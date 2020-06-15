@@ -1,7 +1,5 @@
 package com.theGoodCar.concesionarioApplication.infrastructure.utils;
 
-import java.util.LinkedList;
-
 public class ValidateBuyCar {
     private final static String ONLY_CHARACTERS = "[A-Za-z ]*";
     private final static String ONLY_DNI = "[0-9]{8}[A-Z]{1}";

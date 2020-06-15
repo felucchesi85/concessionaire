@@ -4,7 +4,6 @@ import com.theGoodCar.concesionarioApplication.application.configuration.FilesHT
 import com.theGoodCar.concesionarioApplication.domain.Car;
 import com.theGoodCar.concesionarioApplication.infrastructure.utils.ValidateBuyCar;
 import com.theGoodCar.concesionarioApplication.infrastructure.utils.ValidateSellCar;
-import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
@@ -19,99 +18,63 @@ import static com.theGoodCar.concesionarioApplication.infrastructure.utils.Funct
 @NoArgsConstructor
 public class CarsAction {
 
-    public LinkedList<Car> servicioPrueba1() {
-        LinkedList<Car> listCars = paginationCars(1, 6);
-        return listCars;
+    public LinkedList<Car> createPaginationCars(int numPagination, int numCards) {
+        LinkedList<Car> listCars = createDefaultCars();
+        LinkedList<Car> carsPagination = new LinkedList<>();
+
+        for (int i = (numPagination-1)*numCards+1; i <= numPagination*numCards; i++) {
+            if (i <= listCars.size()) {
+                carsPagination.add(listCars.get(i-1));
+            }
+        }
+        return carsPagination;
     }
 
-    public int servicioPrueba2() {
-        int numberPages = calculateNumberPages(6);
-        return numberPages;
-    }
-
-    public void executeSearchCars(Model model) {
-        LinkedList<Car> listCars = paginationCars(1, 6);
-        int numberPages = calculateNumberPages(6);
-        model.addAttribute("listCars", listCars);
-        model.addAttribute("numberPages", numberPages);
-        model.addAttribute("page", 1);
-        //return FilesHTML.SEARCH_CARS;
-    }
-
-
-    public String executeSearchCarsNewPage(Model model, int page, int numberCards) {
-        LinkedList<Car> listCars = paginationCars(page, numberCards);
-        int numberPages = calculateNumberPages(numberCards);
-        model.addAttribute("view", false);
-        model.addAttribute("listCars", listCars);
-        model.addAttribute("numberPages", numberPages);
-        model.addAttribute("page", page);
-        return FilesHTML.SEARCH_CARS;
-    }
-
-    public String executeSeeCarDetails(String serialNumber, Model model) {
-        Car car = findCarBySerialNumber(serialNumber);
-        model.addAttribute("car", car);
-        return FilesHTML.SEE_DETAILS;
-    }
-
-    public String executeFormBuyCar(String serialNumber, Model model) {
-        Car car = findCarBySerialNumber(serialNumber);
-        model.addAttribute("car", car);
-        model.addAttribute("error", false);
-        return FilesHTML.BUY_CAR;
-    }
-
-    public ModelAndView executeBuyCar(String name, String lastName, String dni, String agreeTerms, String serialNumber) {
-        Car car = findCarBySerialNumber(serialNumber);
-        if (ValidateBuyCar.validationBuy(name, lastName, dni, agreeTerms)) {
-            return viewTicketBuyCar(name, lastName, dni, car);
+    public int calculatePages(int numPagination) {
+        LinkedList<Car> listCars = createDefaultCars();
+        int numberCars = listCars.size();
+        if (numberCars%numPagination == 0) {
+            return numberCars/numPagination;
         } else {
-            return viewBuyCarErrorMessage(car, true);
+            return numberCars/numPagination + 1;
         }
     }
 
-    private ModelAndView viewBuyCarErrorMessage(Car car, boolean errorMessage) {
-        ModelAndView modelAndView = new ModelAndView(FilesHTML.BUY_CAR);
-        modelAndView.addObject("car", car);
-        modelAndView.addObject("error", true);
-        return modelAndView;
-    }
+    public Car findCarBySerialNumber(String serialNumber) {
+        LinkedList<Car> listCars = createDefaultCars();
 
-    private ModelAndView viewTicketBuyCar(String name, String lastName, String dni, Car car) {
-        ModelAndView modelAndView = new ModelAndView(FilesHTML.TICKET_BUY_CAR);
-        modelAndView.addObject("name", name);
-        modelAndView.addObject("lastName", lastName);
-        modelAndView.addObject("dni", dni);
-        modelAndView.addObject("car", car);
-        return modelAndView;
-    }
-
-    public String executeFormSellCar(Model model) {
-        model.addAttribute("error", false);
-        return FilesHTML.SELL_CAR;
-    }
-
-    public ModelAndView executeSellCar(Map<String, String> allParams) {
-        if (ValidateSellCar.validationSell(allParams)) {
-            LinkedList<Car> listCars = paginationCars(1, 6);
-            Car newCar = createCar(allParams);
-            return viewSearchCar(listCars, newCar);
-        } else {
-            ModelAndView modelAndView = new ModelAndView(FilesHTML.SELL_CAR);
-            modelAndView.addObject("error", true);
-            return modelAndView;
+        for (Car car: listCars) {
+            if (car.getSerialNumber() == Integer.parseInt(serialNumber)) {
+                return car;
+            }
         }
+        return null;
     }
 
-    private ModelAndView viewSearchCar(LinkedList<Car> listCars, Car newCar) {
-        ModelAndView modelAndView = new ModelAndView(FilesHTML.SEARCH_CARS);
-        int numberPages = calculateNumberPages(6);
-        modelAndView.addObject("view", true);
-        modelAndView.addObject("newCar", newCar);
-        modelAndView.addObject("listCars", listCars);
-        modelAndView.addObject("numberPages", numberPages);
-        modelAndView.addObject("page", 1);
-        return modelAndView;
+    public static Car createCar(Map<String, String> allParams) {
+        int newSerialNumber = createDefaultCars().getLast().getSerialNumber() + 1;
+        LinkedList<String> interiorFeatures = interiorFeatures();
+        LinkedList<String> exteriorFeatures = exteriorFeatures();
+        LinkedList<String> safetyFeatures = safetyFeatures();
+
+        Car car = Car.builder()
+                .serialNumber(newSerialNumber)
+                .brand(allParams.get("brand"))
+                .bodyType(allParams.get("bodyType"))
+                .model(allParams.get("model"))
+                .yearManufacturer(Integer.parseInt(allParams.get("yearManufacturer")))
+                .carDetails(allParams.get("carDetails"))
+                .interiorFeatures(interiorFeatures)
+                .exteriorFeatures(exteriorFeatures)
+                .safetyFeatures(safetyFeatures)
+                .othersFeatures(allParams.get("otherFeatures"))
+                .color(allParams.get("color"))
+                .transmision(allParams.get("transmission"))
+                .description(allParams.get("description"))
+                .price(allParams.get("price"))
+                .image("audiA8.jpg")
+                .build();
+
+        return car;
     }
 }

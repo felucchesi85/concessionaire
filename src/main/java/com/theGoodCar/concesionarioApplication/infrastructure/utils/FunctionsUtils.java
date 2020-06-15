@@ -194,17 +194,6 @@ public class FunctionsUtils {
         return listCars;
     }
 
-    public static Car findCarBySerialNumber(String serialNumber) {
-        LinkedList<Car> listCars = createDefaultCars();
-
-        for (Car car: listCars) {
-            if (car.getSerialNumber() == Integer.parseInt(serialNumber)) {
-                return car;
-            }
-        }
-        return null;
-    }
-
     public static LinkedList<Car> paginationCars(int numPagination, int numCards) {
         LinkedList<Car> listCars = createDefaultCars();
         LinkedList<Car> carsPagination = new LinkedList<>();

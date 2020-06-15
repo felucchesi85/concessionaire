@@ -38,70 +38,29 @@ public class CarControllerShould {
 
     private Model model;
 
-    //Funciona bien si le quitas los GIVEN y los WHEN.
-    @Test
-    void pruebas_api() throws Exception {
-        //when(carsAction.servicioPrueba()).thenReturn("Hello, Mock");
-        LinkedList<Car> listCars = paginationCars(1, 6);
-        int numberPages = calculateNumberPages(6);
-
-        /*when(carsAction.servicioPrueba(model)).thenReturn(
-                model.addAttribute("listCars", listCars)
-                        .addAttribute("numberPages", numberPages)
-                        .addAttribute("page", 1));*/
-        when(carsAction.servicioPrueba1()).thenReturn(listCars);
-        when(carsAction.servicioPrueba2()).thenReturn(numberPages);
-        //when(carsAction.servicioPrueba(model, listCars, numberPages)).thenCa
-        mvc.perform(get("/cars/pruebas")
-                .accept(MediaType.APPLICATION_JSON))
-                .andExpect(status().isOk());
-    }
-
-    /*@Test
-    void pruebas_api() throws Exception {
-        //when(carsAction.servicioPrueba()).thenReturn("Hello, Mock");
-        LinkedList<Car> listCars = paginationCars(1, 6);
-        int numberPages = calculateNumberPages(6);
-        //when(carsAction.servicioPrueba(model, listCars, numberPages)).thenReturn(model.addAttribute("page", 1));
-        when(carsAction.servicioPrueba()).thenReturn(listCars);
-        //when(carsAction.servicioPrueba(model, listCars, numberPages)).thenCa
-        mvc.perform(get("/cars/pruebas")
-                .accept(MediaType.APPLICATION_JSON))
-                .andExpect(status().isOk());
-    }*/
-
-    // Le mola al test que no vaya a la función servicios las cosas... excepto si está vacio el método, ahi genial
     @Test
     void search_car_endpoint_should_return_200() throws Exception {
-        //String body = objectMapper.writeValueAsString()
+        LinkedList<Car> listCars = paginationCars(1, 6);
+        int numberPages = calculateNumberPages(6);
 
-        /*mvc.perform(get("/cars/search")
-                .accept(MediaType.APPLICATION_JSON))
-                .andExpect(status().isOk());*/
-
-        /*mvc.perform(get("/search"))
-            .andExpect(status().is(HttpStatus.OK.value()));*/
-
-        //when(carsAction.executeSearchCars(model)).thenReturn(FilesHTML.INDEX);
-
-        /*mvc.perform(get("/cars/search")
-                .contentType(MediaType.APPLICATION_JSON)
-                .accept(MediaType.APPLICATION_JSON))
-                .andExpect(status().isOk());*/
-        //assertThat(carsAction.executeSearchCars(model)).isNull();
-
-        //System.out.println(carsAction.executeSearchCars(this.model));
-
-        // De aqui abajo funciona
+        when(carsAction.createPaginationCars(1, 6)).thenReturn(listCars);
+        when(carsAction.calculatePages(6)).thenReturn(numberPages);
 
         mvc.perform(get("/cars/search")
                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
+    }
 
-        /*assertThat(carsAction.executeSearchCars(model)).isNull();*/
+    @Test
+    void search_car_other_page_endpoint_should_return_200() throws Exception {
+        LinkedList<Car> listCars = paginationCars(1, 6);
+        int numberPages = calculateNumberPages(6);
 
-        /*mvc.perform(get("/cars/pruebas")
+        when(carsAction.createPaginationCars(1, 6)).thenReturn(listCars);
+        when(carsAction.calculatePages(6)).thenReturn(numberPages);
+
+        mvc.perform(get("/cars/search")
                 .accept(MediaType.APPLICATION_JSON))
-                .andExpect(status().isOk());*/
+                .andExpect(status().isOk());
     }
 }
