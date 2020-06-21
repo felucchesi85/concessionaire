@@ -8,6 +8,7 @@ import com.theGoodCar.concesionarioApplication.infrastructure.utils.ValidateSell
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -57,39 +58,37 @@ public class CarController {
     @PostMapping("/buyCar/{serialNumber}/buy")
     public ModelAndView buyCar(@RequestParam("name") String name, @RequestParam("lastName") String lastName, @RequestParam("dni") String dni, @RequestParam("agreeTerms") String agreeTerms, @RequestParam("serialNumber") String serialNumber) {
         Car car = carsAction.findCarBySerialNumber(serialNumber);
+        ModelAndView modelAndView = new ModelAndView();
         if (ValidateBuyCar.validationBuy(name, lastName, dni, agreeTerms)) {
-            ModelAndView modelAndView = new ModelAndView(FilesHTML.TICKET_BUY_CAR);
+            modelAndView.setViewName(FilesHTML.TICKET_BUY_CAR);
             insertDataDetailsModel(modelAndView, name, lastName, dni, car);
-            return modelAndView;
         } else {
-            ModelAndView modelAndView = new ModelAndView(FilesHTML.BUY_CAR);
+            modelAndView.setViewName(FilesHTML.BUY_CAR);
             insertCarDetailsModel(modelAndView, car, true);
-            return modelAndView;
         }
+        return modelAndView;
     }
 
     @GetMapping("/sellCar")
     public ModelAndView formSellCar() {
         ModelAndView modelAndView = new ModelAndView(FilesHTML.SELL_CAR);
-        //modelAndView.addObject("error", false);
         insertErrorMessageModel(modelAndView, false);
         return modelAndView;
-        //return carsAction.executeFormSellCar(model);
     }
 
     @PostMapping("/sellCar/sell")
     public ModelAndView sellCar(@RequestParam Map<String, String> allParams) {
+        ModelAndView modelAndView = new ModelAndView();
         if (ValidateSellCar.validationSell(allParams)) {
             LinkedList<Car> listCars = carsAction.createPaginationCars(1, 6);
             int numberPages = carsAction.calculatePages(6);
             Car newCar = carsAction.createCar(allParams);
-            ModelAndView modelAndView = new ModelAndView(FilesHTML.SEARCH_CARS);
+            modelAndView.setViewName(FilesHTML.SEARCH_CARS);
             insertCarInSearchCars(modelAndView, newCar, listCars, numberPages);
-            return modelAndView;
         } else {
-            ModelAndView modelAndView = new ModelAndView(FilesHTML.SELL_CAR);
+            modelAndView.setViewName(FilesHTML.SELL_CAR);
             insertErrorMessageModel(modelAndView, true);
-            return modelAndView;
         }
+        return modelAndView;
     }
 }

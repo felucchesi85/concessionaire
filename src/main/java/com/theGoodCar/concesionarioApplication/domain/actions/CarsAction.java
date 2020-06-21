@@ -7,6 +7,7 @@ import com.theGoodCar.concesionarioApplication.infrastructure.utils.ValidateSell
 import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.LinkedList;
@@ -51,7 +52,7 @@ public class CarsAction {
         return null;
     }
 
-    public static Car createCar(Map<String, String> allParams) {
+    public Car createCar(Map<String, String> allParams) {
         int newSerialNumber = createDefaultCars().getLast().getSerialNumber() + 1;
         LinkedList<String> interiorFeatures = interiorFeatures();
         LinkedList<String> exteriorFeatures = exteriorFeatures();
