@@ -158,7 +158,6 @@ public class CarControllerShould {
                 .andExpect(status().isOk());
     }
 
-    // Acabar este test... falta los when
     @Test
     void to_sell_car_endpoint_should_return_200() throws Exception {
         //GIVEN
@@ -166,7 +165,6 @@ public class CarControllerShould {
         LinkedList<Car> listCars = paginationCars(2, 6);
         int numberPages = calculateNumberPages(6);
         MultiValueMap<String, String> allParams = new LinkedMultiValueMap<>();
-        //Map<String, String> allParams = new TreeMap<>();
         allParams.put("brand", Collections.singletonList("foo"));
         allParams.put("bodyType", Collections.singletonList("foo"));
         allParams.put("model", Collections.singletonList("foo"));
@@ -184,6 +182,33 @@ public class CarControllerShould {
         when(carsAction.createPaginationCars(1, 6)).thenReturn(listCars);
         when(carsAction.calculatePages(6)).thenReturn(numberPages);
         when(carsAction.createCar(allParams.toSingleValueMap())).thenReturn(car);
+
+        //THEN
+        mvc.perform(post("/cars/sellCar/sell")
+                .params(allParams)
+                .accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk());
+    }
+
+    @Test
+    void to_sell_car_fail_and_resend_form_endpoint_should_return_200() throws Exception {
+        //GIVEN
+        MultiValueMap<String, String> allParams = new LinkedMultiValueMap<>();
+        allParams.put("brand", Collections.singletonList("foo"));
+        allParams.put("bodyType", Collections.singletonList("foo"));
+        allParams.put("model", Collections.singletonList("foo"));
+        // Change year to test the validation and result fail (false)
+        allParams.put("yearManufacturer", Collections.singletonList("2040"));
+        allParams.put("carDetails", Collections.singletonList("foo"));
+        allParams.put("otherFeatures", Collections.singletonList("foo"));
+        allParams.put("color", Collections.singletonList("foo"));
+        allParams.put("transmission", Collections.singletonList("foo"));
+        allParams.put("description", Collections.singletonList("foo"));
+        allParams.put("price", Collections.singletonList("2000"));
+
+        //TAMBIÉN PUEDO HACERLO LAS FUNCIONES, NO EL TEST, CON MultiValueMap, incluso la entrada de parámetros... aunque no olvidar el singletonList y el toSingleValueMap() para hacerlo Map
+
+        //WHEN
 
         //THEN
         mvc.perform(post("/cars/sellCar/sell")
