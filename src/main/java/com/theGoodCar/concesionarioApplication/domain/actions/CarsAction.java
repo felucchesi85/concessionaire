@@ -51,7 +51,7 @@ public class CarsAction {
         }
         return null;
     }
-
+    
     public Car createCar(Map<String, String> allParams) {
         int newSerialNumber = createDefaultCars().getLast().getSerialNumber() + 1;
         LinkedList<String> interiorFeatures = interiorFeatures();
