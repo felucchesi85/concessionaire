@@ -1,14 +1,11 @@
 package com.theGoodCar.concesionarioApplication.unit;
 
-import com.theGoodCar.concesionarioApplication.domain.Car;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.Map;
 import java.util.TreeMap;
 
-import static com.theGoodCar.concesionarioApplication.infrastructure.utils.ValidateBuyCar.validationBuy;
 import static com.theGoodCar.concesionarioApplication.infrastructure.utils.ValidateSellCar.validation;
 import static com.theGoodCar.concesionarioApplication.infrastructure.utils.ValidateSellCar.validationSell;
 import static org.assertj.core.api.Assertions.assertThat;

@@ -3,7 +3,6 @@ package com.theGoodCar.concesionarioApplication.infrastructure.utils;
 import com.theGoodCar.concesionarioApplication.domain.Car;
 import com.theGoodCar.concesionarioApplication.domain.actions.CarsAction;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.ui.Model;
 
 import java.util.LinkedList;
 import java.util.Map;

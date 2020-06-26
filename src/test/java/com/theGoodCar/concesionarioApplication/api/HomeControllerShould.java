@@ -16,9 +16,6 @@ public class HomeControllerShould {
     @Autowired
     private MockMvc mvc;
 
-    @Autowired
-    private HomeController controller;
-
     @Test
     void home_endpoint_should_return_200() throws Exception {
 

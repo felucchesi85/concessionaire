@@ -1,14 +1,8 @@
 package com.theGoodCar.concesionarioApplication.domain.actions;
 
-import com.theGoodCar.concesionarioApplication.application.configuration.FilesHTML;
 import com.theGoodCar.concesionarioApplication.domain.Car;
-import com.theGoodCar.concesionarioApplication.infrastructure.utils.ValidateBuyCar;
-import com.theGoodCar.concesionarioApplication.infrastructure.utils.ValidateSellCar;
 import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Service;
-import org.springframework.ui.Model;
-import org.springframework.util.MultiValueMap;
-import org.springframework.web.servlet.ModelAndView;
 
 import java.util.LinkedList;
 import java.util.Map;
@@ -51,7 +45,7 @@ public class CarsAction {
         }
         return null;
     }
-    
+
     public Car createCar(Map<String, String> allParams) {
         int newSerialNumber = createDefaultCars().getLast().getSerialNumber() + 1;
         LinkedList<String> interiorFeatures = interiorFeatures();

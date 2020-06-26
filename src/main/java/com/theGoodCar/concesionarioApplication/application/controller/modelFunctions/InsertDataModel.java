@@ -28,8 +28,6 @@ public class InsertDataModel {
     public static void insertCarDetailsModel(ModelAndView modelandView, Car car, boolean showErrorMessage) {
         modelandView.addObject("car", car);
         modelandView.addObject("error", showErrorMessage);
-        /*model.addAttribute("car", car);
-        model.addAttribute("error", false);*/
     }
 
     public static void insertDataDetailsModel(ModelAndView modelAndView, String name, String lastName, String dni, Car car) {
